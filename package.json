@@ -1,0 +1,23 @@
+{
+  "name": "node",
+  "version": "1.0.0",
+  "description": "sever side javascript tutorials",
+  "main": "hell.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Parkkkkk/practise.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Parkkkkk/practise/issues"
+  },
+  "homepage": "https://github.com/Parkkkkk/practise#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "underscore": "^1.9.0"
+  }
+}
