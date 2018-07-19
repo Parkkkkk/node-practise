@@ -2,20 +2,20 @@
   "name": "node",
   "version": "1.0.0",
   "description": "sever side javascript tutorials",
-  "main": "hell.js",
+  "main": "hello.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Parkkkkk/practise.git"
+    "url": "git+https://github.com/Parkkkkk/node-practise.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Parkkkkk/practise/issues"
+    "url": "https://github.com/Parkkkkk/node-practise/issues"
   },
-  "homepage": "https://github.com/Parkkkkk/practise#readme",
+  "homepage": "https://github.com/Parkkkkk/node-practise#readme",
   "dependencies": {
     "express": "^4.16.3",
     "underscore": "^1.9.0"
