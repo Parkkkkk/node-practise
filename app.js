@@ -1,8 +1,16 @@
 var express = require('express');
 var app = express();
+app.locals.pretty = true;
+app.set('view engine' , 'jade');
+app.set('views', './views')
 app.use(express.static('public'));  
 // public이라는 디렉터리에 정적인 파일을 갔다놓으면 
 //그 정적인 파일을 사용자에게 서비스 할수있다.
+
+app.get('/template' , function(req,res){
+	res.render('temp', {time:Date(), _title:'Jade'});
+})
+
 app.get('/', function(req , res) {
 	res.send('Hello hame page');
 });
