@@ -7,11 +7,31 @@ app.use(express.static('public'));
 // public이라는 디렉터리에 정적인 파일을 갔다놓으면 
 //그 정적인 파일을 사용자에게 서비스 할수있다.
 
+app.get('/topic/:id' , function(req, res){
+	var topics = [
+		'Javascript is...',
+		'Nodejs is ...',
+		'Express is...'
+		];
+	var output = `
+		<a href = "/topic?id=0">Javascript</a><br>
+		<a href = "/topic?id=1">Nodejs</a><br>
+		<a href = "/topic?id=2">Express</a><br>
+		${topics[req.params.id]}
+	`
+	res.send(output);
+});
+
+app.get('/topic/:id/:mode', function(req, res){
+	res.send(req.params.id + req.params.mode);
+});
+// topic/1/edit를 실행했을경우 edit는 mode에서 받아온다.
+
 app.get('/template' , function(req,res){
 	res.render('temp', {time:Date(), _title:'Jade'});
-})
+});
 
-app.get('/', function(req , res) {
+app.get('/' , function(req , res) {
 	res.send('Hello hame page');
 });
 
