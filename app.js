@@ -22,6 +22,10 @@ app.get('/topic/:id' , function(req, res){
 	res.send(output);
 });
 
+// 사용자가 topic?id=1 이 아닌
+// topic/1로 접근했을때 id=1이라는 것을 인식하여 응답하는법
+// 시멘틱 웹
+
 app.get('/topic/:id/:mode', function(req, res){
 	res.send(req.params.id + req.params.mode);
 });
@@ -36,14 +40,13 @@ app.get('/' , function(req , res) {
 });
 
 app.get('/dynamic' , function(req,res){
-	//변수 선언후 ${}안에 변수를 넣어줌으로써 쉽게 코드에 
-	//변수를 넣어 줄 수 있다.
+
 	var lis = '';
 	for(var i = 0; i<5 ; i++){
 		lis = lis + '<li>coding</li>';
 	}
 	var time = Date();
-	//원래 코드를 넣을수 없지만 ``를 통해서 긴 코드도 삽입이가능하다 
+	
 	var output = `<!DOCTYPE html> 
 <html>
 <head>
@@ -60,16 +63,25 @@ app.get('/dynamic' , function(req,res){
 	res.send(output)
 });
 
+//원래 코드를 넣을수 없지만 ``를 통해서 긴 코드도 삽입이가능하다 
+//변수 선언후 ${}안에 변수를 넣어줌으로써 쉽게 코드에 
+//변수를 넣어 줄 수 있다.
+
+
 app.get('/route', function(req,res) {
 	res.send('Hello Router, <img src = "/img.png">')
 });
 
+//route로 접근했을때 image와 같이 보여주는 방법
 
 app.get('/login' , function(req, res) {
 	res.send('Login please');
 });
 
+//사용자가 login으로 접근했을때의 응답
+
 app.listen(3000, function(){
 	console.log('Conneted 3000 port!');
 });
 
+// 연결
