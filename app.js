@@ -1,4 +1,5 @@
 var express = require('express');
+var bodyParser = require('body-parser');
 var app = express();
 app.locals.pretty = true;
 app.set('view engine' , 'jade');
@@ -6,6 +7,27 @@ app.set('views', './views')
 app.use(express.static('public'));  
 // public이라는 디렉터리에 정적인 파일을 갔다놓으면 
 //그 정적인 파일을 사용자에게 서비스 할수있다.
+app.use(bodyParser.urlencoded({ extended : false}));
+// 미들웨어를 먼저 통과한 다음에 라우트가 동작하게 된다.
+
+app.get('/form' , function (req, res){
+	res.render('form');
+});
+// jade는 랜더링방식으로
+
+app.get('/form_receiver' , function(req, res){
+	var title = req.query.title;
+	var description = req.query.description;
+	res.send(title + ',' +description);
+});
+//GET방식
+
+app.post('/form_receiver', function(req, res){
+	var title = req.body.title;
+	var description = req.body.description;
+	res.send(title + ',' + description);
+});
+//POST방식
 
 app.get('/topic/:id' , function(req, res){
 	var topics = [
@@ -14,9 +36,9 @@ app.get('/topic/:id' , function(req, res){
 		'Express is...'
 		];
 	var output = `
-		<a href = "/topic?id=0">Javascript</a><br>
-		<a href = "/topic?id=1">Nodejs</a><br>
-		<a href = "/topic?id=2">Express</a><br>
+		<a href = "/topic/0">Javascript</a><br>
+		<a href = "/topic/1">Nodejs</a><br>
+		<a href = "/topic/2">Express</a><br>
 		${topics[req.params.id]}
 	`
 	res.send(output);
