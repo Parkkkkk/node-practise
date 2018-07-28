@@ -4,12 +4,24 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var multer = require('multer');
-var upload = multer({dest: 'uploads/'})
+
+var storage = multer.diskStorage ({
+	destination : function (req , file , cd) {
+		cd(null, 'uploads/')
+	},
+	filename : function(req, file, cd ) {
+		cd(null, file.originalname)
+	}
+})
+var upload = multer({ storage : storage})
+
 var fs = require('fs');
 var app = express();
 app.use(bodyParser.urlencoded({extended : false}));
 app.locals.pretty = true;
 //Jade태그의 줄바꿈을 도와준다.
+app.use('/user', express.static('uploads'));
+//사용자에게 이미지를 보여주고싶다면 !
 app.set('views' , './views_file');    
 //템플릿 파일을 views_file에 저장
 app.set('view engine' , 'jade');
@@ -18,6 +30,7 @@ app.set('view engine' , 'jade');
 app.get('/upload' , function (req, res){
 	res.render('upload');
 })
+
 app.post('/upload',upload.single('userfile'), function(req , res){
 	console.log(req.file);
 	res.send('Uploaded : ' + req.file.filename);
