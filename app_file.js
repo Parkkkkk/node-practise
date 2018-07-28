@@ -3,6 +3,8 @@
 
 var express = require('express');
 var bodyParser = require('body-parser');
+var multer = require('multer');
+var upload = multer({dest: 'uploads/'})
 var fs = require('fs');
 var app = express();
 app.use(bodyParser.urlencoded({extended : false}));
@@ -12,6 +14,14 @@ app.set('views' , './views_file');
 //템플릿 파일을 views_file에 저장
 app.set('view engine' , 'jade');
 //템플릿 엔진은 jade
+
+app.get('/upload' , function (req, res){
+	res.render('upload');
+})
+app.post('/upload',upload.single('userfile'), function(req , res){
+	console.log(req.file);
+	res.send('Uploaded : ' + req.file.filename);
+})
 
 app.get('/topic/new', function (req, res){
 	fs.readdir('data', function(err, files){
