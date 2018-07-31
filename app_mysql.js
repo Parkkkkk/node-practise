@@ -1,5 +1,4 @@
-//간단한 웹어플리케이션 제작
-//좋지않은 방법이지만 이해만 해보자
+//Mysql을 활용한 간단한 웹어플리케이션 제작
 
 var express = require('express');
 var bodyParser = require('body-parser');
