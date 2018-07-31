@@ -49,6 +49,7 @@ conn.query(sql,params, function (err, rows, fileds){
 });
 */
 
+
 var sql = 'delete from topic where id=?';
 var params = [1];
 conn.query(sql,params, function (err, rows, fileds){
