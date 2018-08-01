@@ -9,7 +9,7 @@ html
 			each topic in topics
 				li 
 					a(href='/topic/'+topic.id)= topic.title
-		artcle			
+		artcle	
 			h1='Delete?' + topic.title
 			form(action = '/topic/'+ topic.id +'/delete' method='post')
 				p
